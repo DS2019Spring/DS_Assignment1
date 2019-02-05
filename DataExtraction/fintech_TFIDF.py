@@ -110,9 +110,9 @@ def computeTDIDF(TF_Scores,IDF_scores):
 	TFIDF_scores =[]
 	for j in IDF_scores:
 		for i in TF_Scores:
-			if j['key'] ==i[key] and j['doc_id'] == i['doc_id']:
-				temp = {'doc_id':j['doc_id'],
-						'TFIDF_scores': j['IDF_scores']*['TF_Scores'],
+			if j['key'] == i['key'] and j['doc_id'] == i['doc_id']:
+				temp = {'doc_id': j['doc_id'],
+						'TFIDF_scores': j['IDF_scores']*i['TF_Score'],
 						'key' : i['key']
 						}
 		TFIDF_scores.append(temp)
@@ -125,15 +125,20 @@ text_sents = sent_tokenize(text)
 text_sents_clean = [remove_special_characters(s) for s in text_sents]
 doc_info = get_doc(text_sents_clean)
 
+#calling function for calculations
 frequency_dict = create_freq_dict(text_sents_clean)
 TF_Scores = compute_TF(doc_info,frequency_dict)
 IDF_scores = compute_IDF(doc_info,frequency_dict)
+TFIDF_scores = computeTDIDF(TF_Scores,IDF_scores)
 
-print(TF_Scores[:10])
+print(TFIDF_scores[:10])
 #source: https://gis.stackexchange.com/questions/72458/exporting-list-of-values-into-csv-or-txt-file-using-arcpy
+#source: https://www.tutorialspoint.com/How-to-save-a-Python-Dictionary-to-CSV-file
 import csv
+csv_colums =["doc_id","TFIDF_scores","key"]
 with open('Fintech_TFIDF.csv', 'w',encoding="UTF-8") as csvFile:
-    writer = csv.writer(csvFile, lineterminator='\n')
-    for item in TF_Scores:
-    	writer.writerows(item) 
+	writer = csv.DictWriter(csvFile,fieldnames = csv_colums)
+	writer.writeheader()
+	for score in TFIDF_scores:	
+    		writer.writerow(score)
 csvFile.close()

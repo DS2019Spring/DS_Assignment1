@@ -9,7 +9,7 @@ file.close()
 from nltk.tokenize import word_tokenize
 tokens = word_tokenize(text)
 # convert to upper case
-tokens = [w.upper() for w in tokens]
+tokens = [w.lower() for w in tokens]
 # remove punctuation from each word
 import string
 table = str.maketrans('', '', string.punctuation)
@@ -27,7 +27,7 @@ word_count = Counter(words).most_common()
 
 #source: https://gis.stackexchange.com/questions/72458/exporting-list-of-values-into-csv-or-txt-file-using-arcpy
 import csv
-with open('Fintech_words.csv', 'w',encoding="UTF-8") as csvFile:
+with open('Fintech_words_count.csv', 'w',encoding="UTF-8") as csvFile:
     writer = csv.writer(csvFile, lineterminator='\n')
     writer.writerows(word_count) 
 csvFile.close()
