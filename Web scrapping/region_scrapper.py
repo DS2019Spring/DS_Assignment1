@@ -13,9 +13,9 @@ import time
 
 
 # In[2]:
-
-
-driver = webdriver.Chrome(executable_path='C:/Users/kiran/Documents/chromedriver.exe')
+#if it does not work please check the path in the folder
+executable_path='chromedriver.exe'
+driver = webdriver.Chrome(executable_path)
 driver.get('https://regions.wd5.myworkdayjobs.com/Regions_Careers')
 time.sleep(10)
 pause=2
