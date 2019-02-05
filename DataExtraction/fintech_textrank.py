@@ -8,7 +8,7 @@ import time
 # in_file.close()
 
 # give file path to store data  in variable
-filename = 'final_data.txt'
+filename = 'noisy_text_data.txt'
 file = open(filename, 'rt',encoding="UTF-8")
 text = file.read()
 file.close()
@@ -38,23 +38,25 @@ import custom_stopwords
 # print (custom_stopwords.stop_words_list)
 words = [w for w in words if not w in custom_stopwords.stop_words_list]
 
+print(words[:20])
+
+#new_txt = " ".join(word for word in words)
+
+from collections import Counter
+word_count = Counter(words).most_common()
 
 
-new_txt = " ".join(word for word in words)
-
-
-
-# start=time.time()
-phrase,word=pyt.top_keywords_sentences(new_txt,phrase_limit=100)
+#phrase,word=pyt.top_keywords_sentences(new_txt,phrase_limit=100)
 
 
 import csv
 with open('Fintech_textrank_words.csv', 'w',encoding="UTF-8") as csvFile:
-    writer = csv.writer(csvFile, lineterminator=',')
-    writer.writerow(w for w in word.replace(',','').split(' ')) 
+    writer = csv.writer(csvFile, lineterminator='\n')
+    writer.writerows(word_count)
+    #writer.writerow(w for w in word.replace(',','').split(' ')) 
     # csvFile.write(w for w in word.replace(',','').split(' '))
 csvFile.close()
 
 
-print('Keywords:',word)
+#print('Keywords:',word)
 #print('Time Taken: ',time.time()-start)
