@@ -6,12 +6,15 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize, sent_tokenize 
 #for IDF calucation using log
 import math
+import custom_stopwords
 
 # give file path to store data  in variable
 filename = 'noisy_text_data.txt'
 file = open(filename, 'rt',encoding="UTF-8")
 text = file.read()
+text = text.lower()
 file.close()
+
 
 def remove_special_characters(s):
 	"""
@@ -19,14 +22,13 @@ def remove_special_characters(s):
 	parameter: s - single input string
 	return : stripped string - a string with special characters removed 
 	"""
-
 	# remove special chracters with ''
 	stripped = re.sub('[^\w\s]','',s)
 	stripped = re.sub('_','',stripped)
 
 	#change any whitespace to one space 
 	stripped = re.sub('\s+', ' ', stripped)
-
+	#stripped = re.sub("[^a-zA-Z]",'',stripped)
 	#remove start & end whitespace
 	stripped = stripped.strip()
 
@@ -65,8 +67,11 @@ def create_freq_dict(sents):
 		i+=1
 		frequency_dict ={}
 		words = word_tokenize(sent)
+		words = [w for w in words if not w in custom_stopwords.stop_words_list]
+
 		for word in words:
 			word = word.lower()
+			
 			if word in frequency_dict:
 				frequency_dict[word]+=1
 			else:
@@ -124,6 +129,7 @@ def computeTDIDF(TF_Scores,IDF_scores):
 text_sents = sent_tokenize(text)
 text_sents_clean = [remove_special_characters(s) for s in text_sents]
 doc_info = get_doc(text_sents_clean)
+
 
 #calling function for calculations
 frequency_dict = create_freq_dict(text_sents_clean)
