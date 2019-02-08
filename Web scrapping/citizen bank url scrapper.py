@@ -25,7 +25,7 @@ url='https://jobs.citizensbank.com/job/loudonville/associate-licensed-relationsh
 # In[13]:
 
 
-driver = webdriver.Chrome(executable_path='C:/Users/kiran/Documents/chromedriver.exe')
+driver = webdriver.Chrome(executable_path='chromedriver.exe')
 driver.get(url)
 time.sleep(5)
 html = driver.page_source
