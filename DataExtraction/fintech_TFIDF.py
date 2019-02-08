@@ -137,7 +137,7 @@ TF_Scores = compute_TF(doc_info,frequency_dict)
 IDF_scores = compute_IDF(doc_info,frequency_dict)
 TFIDF_scores = computeTDIDF(TF_Scores,IDF_scores)
 
-print(TFIDF_scores[:10])
+#print(TFIDF_scores[:10])
 #source: https://gis.stackexchange.com/questions/72458/exporting-list-of-values-into-csv-or-txt-file-using-arcpy
 #source: https://www.tutorialspoint.com/How-to-save-a-Python-Dictionary-to-CSV-file
 import csv
