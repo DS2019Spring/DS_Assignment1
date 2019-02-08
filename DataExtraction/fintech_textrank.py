@@ -38,22 +38,23 @@ import custom_stopwords
 # print (custom_stopwords.stop_words_list)
 words = [w for w in words if not w in custom_stopwords.stop_words_list]
 
-print(words[:20])
 
-#new_txt = " ".join(word for word in words)
-
-from collections import Counter
-word_count = Counter(words).most_common()
+new_txt = " ".join(word for word in words)
 
 
-#phrase,word=pyt.top_keywords_sentences(new_txt,phrase_limit=100)
+# from collections import Counter
 
+# start=time.time()
+phrase,word=pyt.top_keywords_sentences(new_txt,phrase_limit=200)
+
+# word_count = Counter(word).most_common()
+
+# word_list = [x.strip() for x in word.split(',')]
 
 import csv
 with open('Fintech_textrank_words.csv', 'w',encoding="UTF-8") as csvFile:
     writer = csv.writer(csvFile, lineterminator='\n')
-    writer.writerows(word_count)
-    #writer.writerow(w for w in word.replace(',','').split(' ')) 
+    writer.writerow(word.split(',')) 
     # csvFile.write(w for w in word.replace(',','').split(' '))
 csvFile.close()
 
