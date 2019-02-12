@@ -24,14 +24,14 @@ driver = webdriver.Chrome(executable_path='chromedriver.exe')
 driver.get('https://jobs.citizensbank.com/search-jobs')
 time.sleep(10)
 
-driver.find_element_by_id("category-toggle").click()
-time.sleep(2)
-driver.find_element_by_id("category-filter-17").click()
-time.sleep(2)
-driver.find_element_by_id("category-filter-20").click()
-time.sleep(2)
-driver.find_element_by_id("category-filter-28").click()
-time.sleep(2)
+# driver.find_element_by_id("category-toggle").click()
+# time.sleep(2)
+# driver.find_element_by_id("category-filter-17").click()
+# time.sleep(2)
+# driver.find_element_by_id("category-filter-20").click()
+# time.sleep(2)
+# driver.find_element_by_id("category-filter-28").click()
+# time.sleep(2)
 
 html = driver.page_source
 soup = BeautifulSoup(html,"lxml")
@@ -144,7 +144,3 @@ with open('Citizen_Wordcount.csv', 'a',encoding="UTF-8") as csvFile:
    writer = csv.writer(csvFile, lineterminator='\n')
    writer.writerows(final_array)
 csvFile.close()
-
-
-
-
