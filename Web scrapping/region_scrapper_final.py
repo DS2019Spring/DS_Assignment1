@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 url_complete_data = ""
 
-driver = webdriver.Chrome(executable_path='C:/Users/kiran/Documents/chromedriver.exe')
+driver = webdriver.Chrome(executable_path='chromedriver.exe')
 driver.get('https://regions.wd5.myworkdayjobs.com/Regions_Careers')
 time.sleep(10)
 pause=2
@@ -117,7 +117,7 @@ counter = 0 #for countring occurences of the words in the list
 # In[13]:
 print(len(final_url_list))
 
-for url in final_url_list[0:5]:
+for url in final_url_list:
     dict_count ={}
     url_dict_count = {}
     j=0
@@ -125,7 +125,7 @@ for url in final_url_list[0:5]:
         
         final_string1=""
         #print(url)
-        driver = webdriver.Chrome(executable_path='C:/Users/kiran/Documents/chromedriver.exe')
+        driver = webdriver.Chrome(executable_path='chromedriver.exe')
         driver.get(url)
         time.sleep(10)
 
