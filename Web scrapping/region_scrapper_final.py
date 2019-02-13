@@ -62,7 +62,7 @@ while True:
 
 html = driver.page_source
 soup = BeautifulSoup(html,"lxml")
-li_class = soup.findAll("li", { "class" : "WIYF WK3N WE5 WP-F" })
+li_class = soup.findAll("li", { "class" : "WIYF WL3N WE5 WP-F" })
 base_url = "https://regions.wd5.myworkdayjobs.com/en-US/Regions_Careers/job/"
 
 
@@ -73,7 +73,7 @@ final_url_list = []
 final_array = [[]]
 
 for s in li_class:
-    a = s.findAll("div",{"class","gwt-Label WOTO WISO"})[0].string
+    a = s.findAll("div",{"class","gwt-Label WPTO WJSO"})[0].string
     c = re.sub("[^a-zA-Z0-9]","-",str(a))
     b = s.findAll("span",{"class","gwt-InlineLabel WM-F WLYF"})[0].string
     try:
@@ -117,7 +117,7 @@ counter = 0 #for countring occurences of the words in the list
 # In[13]:
 print(len(final_url_list))
 
-for url in final_url_list[80:]:
+for url in final_url_list[0:5]:
     dict_count ={}
     url_dict_count = {}
     j=0

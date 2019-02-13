@@ -1,2 +1,4 @@
 
 Web scrapping/region_scrapper.py
+*.txt
+*.log
