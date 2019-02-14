@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 url_complete_data = ""
 
-driver = webdriver.Chrome(executable_path='C:/Users/kiran/Documents/chromedriver.exe')
+driver = webdriver.Chrome(executable_path='chromedriver.exe')
 driver.get('https://regions.wd5.myworkdayjobs.com/Regions_Careers')
 time.sleep(10)
 pause=2
@@ -62,7 +62,7 @@ while True:
 
 html = driver.page_source
 soup = BeautifulSoup(html,"lxml")
-li_class = soup.findAll("li", { "class" : "WIYF WK3N WE5 WP-F" })
+li_class = soup.findAll("li", { "class" : "WIYF WL3N WE5 WP-F" })
 base_url = "https://regions.wd5.myworkdayjobs.com/en-US/Regions_Careers/job/"
 
 
@@ -73,7 +73,7 @@ final_url_list = []
 final_array = [[]]
 
 for s in li_class:
-    a = s.findAll("div",{"class","gwt-Label WOTO WISO"})[0].string
+    a = s.findAll("div",{"class","gwt-Label WPTO WJSO"})[0].string
     c = re.sub("[^a-zA-Z0-9]","-",str(a))
     b = s.findAll("span",{"class","gwt-InlineLabel WM-F WLYF"})[0].string
     try:
@@ -117,7 +117,7 @@ counter = 0 #for countring occurences of the words in the list
 # In[13]:
 print(len(final_url_list))
 
-for url in final_url_list[80:]:
+for url in final_url_list:
     dict_count ={}
     url_dict_count = {}
     j=0
@@ -125,7 +125,7 @@ for url in final_url_list[80:]:
         
         final_string1=""
         #print(url)
-        driver = webdriver.Chrome(executable_path='C:/Users/kiran/Documents/chromedriver.exe')
+        driver = webdriver.Chrome(executable_path='chromedriver.exe')
         driver.get(url)
         time.sleep(10)
 
